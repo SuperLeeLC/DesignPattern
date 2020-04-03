@@ -1,14 +1,13 @@
-package com.superlee.singleton.type1;
+package com.superlee.singleton.type7;
 
 /**
  * @author : lichao892
- * @date : 2019/10/21 21:02
+ * @date : 2019/10/21 21:24
  * <p>
- * 描述 :    单例模式 --> 饿汉式 (静态常量)
+ * 描述 :    单例模式 --> 静态内部类  推荐使用
  */
 
-public class Singleton1 {
-
+public class Singleton7 {
     public static void main(String[] args) {
         Singleton instance = Singleton.getInstance();
         Singleton instance2 = Singleton.getInstance();
@@ -19,14 +18,14 @@ public class Singleton1 {
 }
 
 class Singleton {
-    //1. 构造器私有化，外部不能new
-    private Singleton() {}
 
-    //2. 本类的内部创建对象实例
-    private final static Singleton instance = new Singleton();
+    private Singleton(){}
 
-    //3. 提供一个公有的静态方法，返回实例对象
+    private static class SingletonInstance {
+        private static final Singleton INSTANCE = new Singleton();
+    }
+
     public static Singleton getInstance() {
-        return instance;
+        return SingletonInstance.INSTANCE;
     }
 }
